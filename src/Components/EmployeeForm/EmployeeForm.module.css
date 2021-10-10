@@ -1,0 +1,79 @@
+.inputBox {
+    margin-top: 10px;
+}
+
+.inputBox input{
+    margin-top: 5px;
+    padding: 10px;
+    border: 1px solid purple;
+    width: 95%;
+    border-radius: 5px;
+    outline-color: purple;
+}
+
+.inputRow{
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+}
+
+.textInputLabel{
+    margin: 10px;
+}
+
+.inputRow .inputBox{
+    width: 60%;
+}
+
+.calendar{
+    width: 35%;
+    margin-top: 10px;
+}
+.calendar input{
+    margin-top: 5px;
+    padding: 8px;
+    border: 1px solid purple;
+    border-radius: 5px;
+    width: 100%;
+}
+
+
+.selectors{
+    display: flex;
+    /* justify-content: space-around; */
+}
+
+.title{
+    padding: 0;
+    margin:0;
+    margin-left: 4px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.gender{
+    width: 20%;
+    padding: 15px;
+}
+
+.hobbies{
+    width: 30%;
+    padding: 15px;
+}
+
+input[type="checkbox"], input[type="radio"]{
+    margin-top: 10px;
+}
+
+label{
+    font-size: 14px;
+}
+
+.btn{
+    background-color: purple;
+    color: white;
+    padding: 5px 20px;
+    border-radius: 5px;
+    border:none;
+    margin-left: 5px;
+}
