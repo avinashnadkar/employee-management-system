@@ -1,3 +1,10 @@
+.addEmployeeBtn{
+    margin:25px;
+    border:1px solid purple;
+    border-radius: 5px;
+    width: fit-content;
+}
+
 .inputBox {
     margin-top: 10px;
 }

@@ -27,7 +27,9 @@ const EmployeeForm = (props) => {
 
     return (
         <div>
-            <Button onClick={handleOpen}>Open modal</Button>
+            <div className={style.addEmployeeBtn} onClick={handleOpen} >
+                <Button> Add new employee </Button>
+            </div>
             <Modal
                 open={open}
                 onClose={handleClose}

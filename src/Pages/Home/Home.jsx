@@ -1,6 +1,8 @@
 import React from "react";
+import style from "./Home.module.css";
 import EmployeeForm from "../../Components/EmployeeForm/EmployeeForm";
 import Navbar from "../../Components/Navbar/Navbar"
+import EmployeeList from "../../Components/EmployeeList/EmployeeList"
 
 const Home = () => {
 
@@ -36,6 +38,9 @@ const Home = () => {
         <div>
             <Navbar/>
             <EmployeeForm {...data} handleChange={handleChange} handleSubmit={handleSubmit} formAction={"Add"}/>
+            <div className={style.employeeListContainer}>
+               <EmployeeList/>
+            </div>
         </div>
     )
 }
