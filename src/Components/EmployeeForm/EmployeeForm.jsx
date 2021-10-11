@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import style from "./EmployeeForm.module.css";
@@ -20,19 +19,11 @@ const styles = {
 
 const EmployeeForm = (props) => {
 
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-
-
     return (
         <div>
-            <div className={style.addEmployeeBtn} onClick={handleOpen} >
-                <Button> Add new employee </Button>
-            </div>
             <Modal
-                open={open}
-                onClose={handleClose}
+                open={props.open}
+                onClose={props.handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
@@ -69,20 +60,20 @@ const EmployeeForm = (props) => {
                                     <input type="radio" name="gender" onChange={props.handleChange} value="Male" />
                                     <label>Male</label> <br />
                                     <input type="radio" name="gender" onChange={props.handleChange} value="Female" />
-                                    <label>Fe-male</label> <br />
+                                    <label>Female</label> <br />
                                     <input type="radio" name="gender" onChange={props.handleChange} value="Other" />
                                     <label>Other</label> <br />
                                 </div>
 
                                 <div className={style.hobbies}>
                                     <p className={style.title}>Hobbies</p>
-                                    <input type="checkbox" name="dancing"  value={props.hobbies.dancing}  onChange={props.handleChange} />
+                                    <input type="checkbox" name="dancing" checked={props.hobbies.dancing} value={props.hobbies.dancing}  onChange={props.handleChange} />
                                     <label>Dancing</label> <br />
-                                    <input type="checkbox" name="cooking" value={props.hobbies.cooking}  onChange={props.handleChange} />
+                                    <input type="checkbox" name="cooking"  checked={props.hobbies.cooking}  value={props.hobbies.cooking}  onChange={props.handleChange} />
                                     <label>Coocking</label> <br />
-                                    <input type="checkbox" name="sports" value={props.hobbies.sports}  onChange={props.handleChange} />
+                                    <input type="checkbox" name="sports"  checked={props.hobbies.sports} value={props.hobbies.sports}  onChange={props.handleChange} />
                                     <label>Sports</label> <br />
-                                    <input type="checkbox" name="painting" value={props.hobbies.painting}  onChange={props.handleChange} />
+                                    <input type="checkbox" name="painting"  checked={props.hobbies.painting} value={props.hobbies.painting}  onChange={props.handleChange} />
                                     <label>Painting</label>
                                 </div>
                             </div>
