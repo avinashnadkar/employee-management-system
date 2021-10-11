@@ -1,8 +1,9 @@
 import React from "react";
 import style from "./Home.module.css";
 import EmployeeForm from "../../Components/EmployeeForm/EmployeeForm";
-import Navbar from "../../Components/Navbar/Navbar"
-import EmployeeList from "../../Components/EmployeeList/EmployeeList"
+import Navbar from "../../Components/Navbar/Navbar";
+import EmployeeList from "../../Components/EmployeeList/EmployeeList";
+import axios from 'axios';
 
 const Home = () => {
 
@@ -30,8 +31,14 @@ const Home = () => {
  
      //Add the data
      const handleSubmit = (e) => {
-         e.preventDefault()
-         console.log(data)
+        //  e.preventDefault()
+         axios.post('http://localhost:3001/employees',{
+             ...data
+         }).then((res)=>{
+             console.log(res)
+         }).catch((err)=>{
+             console.log(err)
+         })
      }
 
     return(
