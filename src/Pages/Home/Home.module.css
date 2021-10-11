@@ -1,3 +1,10 @@
+.addEmployeeBtn{
+    margin:25px;
+    border:1px solid purple;
+    border-radius: 5px;
+    width: fit-content;
+}
+
 .employeeListContainer{
     width:95vw;
     margin :0 auto;

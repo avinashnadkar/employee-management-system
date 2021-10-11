@@ -3,13 +3,17 @@ import style from "./Home.module.css";
 import EmployeeForm from "../../Components/EmployeeForm/EmployeeForm";
 import Navbar from "../../Components/Navbar/Navbar";
 import EmployeeList from "../../Components/EmployeeList/EmployeeList";
+import Button from '@mui/material/Button';
 import axios from 'axios';
 
 const Home = () => {
 
      //States
      const [data, setData] = React.useState({ name: "", email: "", phone: "", dob: "", gender: "", hobbies: { dancing: false, cooking: false, sports: false, painting: false } })
-
+     const [open, setOpen] = React.useState(false);
+     const handleOpen = () => setOpen(true);
+     const handleClose = () => setOpen(false);
+  
      //change the data on events
      const handleChange = (e) => {
  
@@ -44,7 +48,10 @@ const Home = () => {
     return(
         <div>
             <Navbar/>
-            <EmployeeForm {...data} handleChange={handleChange} handleSubmit={handleSubmit} formAction={"Add"}/>
+            <div className={style.addEmployeeBtn} onClick={handleOpen} >
+                <Button> Add new employee </Button>
+            </div>
+            <EmployeeForm {...data} handleChange={handleChange} handleSubmit={handleSubmit} formAction={"Add"} handleClose={handleClose} open={open}/>
             <div className={style.employeeListContainer}>
                <EmployeeList/>
             </div>

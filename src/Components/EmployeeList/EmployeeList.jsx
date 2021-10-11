@@ -17,6 +17,8 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import axios from 'axios';
 import DeleteIcon from '@mui/icons-material/Delete';
+import CreateIcon from '@mui/icons-material/Create';
+import EmployeeForm from '../EmployeeForm/EmployeeForm';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -83,26 +85,23 @@ function createData(name, calories, fat) {
   return { name, calories, fat };
 }
 
-const rows = [
-  createData('Cupcake', 305, 3.7),
-  createData('Donut', 452, 25.0),
-  createData('Eclair', 262, 16.0),
-  createData('Frozen yoghurt', 159, 6.0),
-  createData('Gingerbread', 356, 16.0),
-  createData('Honeycomb', 408, 3.2),
-  createData('Ice cream sandwich', 237, 9.0),
-  createData('Jelly Bean', 375, 0.0),
-  createData('KitKat', 518, 26.0),
-  createData('Lollipop', 392, 0.2),
-  createData('Marshmallow', 318, 0),
-  createData('Nougat', 360, 19.0),
-  createData('Oreo', 437, 18.0),
-].sort((a, b) => (a.calories < b.calories ? -1 : 1));
+
 
 const EmployeeList = () => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [data,setData] = React.useState([])
+  const [updateData,setUpdateData] = React.useState({ name: "", email: "", phone: "", dob: "", gender: "", hobbies: { dancing: false, cooking: false, sports: false, painting: false } })
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = (id) =>{
+     setOpen(true);
+     let element = data.filter(el=>{
+       return el.id == id;
+     })
+     setUpdateData(element[0])
+     console.log(element[0])
+  }
+  const handleClose = () => setOpen(false);
 
   //Get data from server
   React.useEffect(()=>{
@@ -115,6 +114,24 @@ const EmployeeList = () => {
       })
   },[])
 
+  //Change the input state
+  const handleChangeUpdate = (e) => {
+    var [name, value] = [e.target.name, e.target.value];
+ 
+      if (name == "dancing" || name == "cooking" || name == "sports" || name == "painting") {
+        let isTrue = (value === 'false')
+        setUpdateData({
+            ...updateData,
+            hobbies: { ...updateData.hobbies, [name]: isTrue}
+        }) 
+      }else{
+        setUpdateData({
+          ...updateData,
+            [name]: value
+        }) 
+      }
+  }
+
   //Delete employee
   const handleDelete = (id) => {
       // console.log(id)
@@ -126,9 +143,22 @@ const EmployeeList = () => {
       })
   }
 
+  //Update employee
+  const handleUpdate = (e) => {
+        //  e.preventDefault()
+         axios.patch(`http://localhost:3001/employees/${updateData.id}`, {
+              ...updateData
+         }).then((res)=>{
+           console.log(res)
+         }).catch(err=>{
+           console.log(err)
+         })
+        // console.log(updateData)
+  }
+
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -141,6 +171,7 @@ const EmployeeList = () => {
 
   return (
     <TableContainer component={Paper}>
+       <EmployeeForm {...updateData} handleChange={handleChangeUpdate}  handleSubmit={handleUpdate}  handleClose={handleClose} open={open} formAction={"Update Data"}/>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
         <TableBody>
           {(rowsPerPage > 0
@@ -169,8 +200,11 @@ const EmployeeList = () => {
                <p> {row.hobbies.sports ? "Sports" : ""} </p>
                <p> {row.hobbies.painting ? "Painting" : ""} </p>
               </TableCell>
-              <TableCell  style={{ width: 160 }} align="right"> 
+              <TableCell  style={{ width: 100 }} align="right"> 
                    <div onClick={()=>handleDelete(row.id)}> <DeleteIcon/> </div>
+              </TableCell>
+              <TableCell  style={{ width: 100 }} align="center"> 
+                <div onClick={()=>handleOpen(row.id)} > <CreateIcon /></div>
               </TableCell>
             </TableRow>
           ))}
@@ -186,7 +220,7 @@ const EmployeeList = () => {
             <TablePagination
               rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
               colSpan={3}
-              count={rows.length}
+              count={data.length}
               rowsPerPage={rowsPerPage}
               page={page}
               SelectProps={{
