@@ -15,6 +15,7 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
+import axios from 'axios';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -100,6 +101,18 @@ const rows = [
 const EmployeeList = () => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [data,setData] = React.useState([])
+
+  //Get data from server
+  React.useEffect(()=>{
+      axios.get('http://localhost:3001/employees')
+      .then(res=>{
+        //console.log(res.data)
+        setData(res.data)
+      }).catch(err=>{
+        console.log(err)
+      })
+  },[])
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -119,18 +132,30 @@ const EmployeeList = () => {
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
         <TableBody>
           {(rowsPerPage > 0
-            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : rows
+            ? data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            : data
           ).map((row) => (
             <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row" style={{ width: 160 }}>
                 {row.name}
               </TableCell>
               <TableCell style={{ width: 160 }} align="right">
-                {row.calories}
+                {row.email}
               </TableCell>
               <TableCell style={{ width: 160 }} align="right">
-                {row.fat}
+                {row.phone}
+              </TableCell>
+              <TableCell style={{ width: 160 }} align="right">
+                {row.gender}
+              </TableCell>
+              <TableCell style={{ width: 160 }} align="right">
+                {row.dob}
+              </TableCell>
+              <TableCell style={{ width: 160 }} align="right">
+               <p> {row.hobbies.cooking ? "Coocking" : ""} </p>
+               <p> {row.hobbies.dancing ? "Dancing" : ""} </p>
+               <p> {row.hobbies.sports ? "Sports" : ""} </p>
+               <p> {row.hobbies.painting ? "Painting" : ""} </p>
               </TableCell>
             </TableRow>
           ))}
