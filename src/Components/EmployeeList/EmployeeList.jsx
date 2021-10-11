@@ -16,6 +16,7 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import axios from 'axios';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -114,6 +115,17 @@ const EmployeeList = () => {
       })
   },[])
 
+  //Delete employee
+  const handleDelete = (id) => {
+      // console.log(id)
+      axios.delete(`http://localhost:3001/employees/${id}`)
+      .then(res=>{
+        console.log("employee delted successfully")
+      }).catch(err=>{
+        console.log("Error" + ":" + err)
+      })
+  }
+
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
@@ -156,6 +168,9 @@ const EmployeeList = () => {
                <p> {row.hobbies.dancing ? "Dancing" : ""} </p>
                <p> {row.hobbies.sports ? "Sports" : ""} </p>
                <p> {row.hobbies.painting ? "Painting" : ""} </p>
+              </TableCell>
+              <TableCell  style={{ width: 160 }} align="right"> 
+                   <div onClick={()=>handleDelete(row.id)}> <DeleteIcon/> </div>
               </TableCell>
             </TableRow>
           ))}
