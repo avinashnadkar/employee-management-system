@@ -8,7 +8,7 @@
 1) after starting the app it is time to run server (json-server)
 2) open new terminal/cmd locate to server folder
 3) download dependencies by running "npm i" command
-4) To start the server run "json-server --watch employees.json"
+4) To start the server run " json-server --watch employee.json --port 3001"
 
 # Some screenshots of application
 
