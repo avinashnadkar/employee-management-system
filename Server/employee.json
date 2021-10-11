@@ -1,76 +1,60 @@
 {
+
   "employees": [
     {
       "id": 1,
       "name": "Employee One",
       "email": "employee-one@gmail.com",
-      "phone": "9855689956",
-      "dob": "14-10-2001",
-      "gender": "Female",
-      "hobbies": {
-        "dancing": false,
-        "cooking": true,
-        "sports": false,
-        "painting": true
-      }
+      "phone" : "9855689956",
+      "dob" : "14-10-2001",
+      "gender" : "Female",
+      "hobbies": { 
+        "dancing": false, 
+        "cooking": true, 
+        "sports": false, 
+        "painting": true }
     },
     {
       "id": 2,
       "name": "Employee Two",
       "email": "employee-two@hotmail.com",
-      "phone": "8995698556",
-      "dob": "24-04-2006",
-      "gender": "Male",
-      "hobbies": {
-        "dancing": true,
-        "cooking": false,
-        "sports": false,
-        "painting": true
-      }
+      "phone" : "8995698556",
+      "dob" : "24-04-2006",
+      "gender" : "Male",
+      "hobbies": { 
+        "dancing": true, 
+        "cooking": false, 
+        "sports": false, 
+        "painting": true }
     },
     {
       "id": 3,
       "name": "Employee Tree",
       "email": "employee-three@yahoo.com",
-      "phone": "7855689956",
-      "dob": "06-05-1995",
-      "gender": "Female",
-      "hobbies": {
-        "dancing": false,
-        "cooking": true,
-        "sports": false,
-        "painting": true
-      }
+      "phone" : "7855689956",
+      "dob" : "06-05-1995",
+      "gender" : "Female",
+      "hobbies": { 
+        "dancing": false, 
+        "cooking": true, 
+        "sports": false, 
+        "painting": true }
     },
     {
       "id": 4,
       "name": "Employee Four",
       "email": "employee-four@gmail.com",
-      "phone": "8564788456",
-      "dob": "26-11-2002",
-      "gender": "Male",
-      "hobbies": {
-        "dancing": true,
-        "cooking": true,
-        "sports": false,
-        "painting": true
-      }
-    },
-    {
-      "name": "fifth employee",
-      "email": "employeefive@gmail.com",
-      "phone": "4984968498",
-      "dob": "2021-10-17",
-      "gender": "Female",
-      "hobbies": {
-        "dancing": false,
-        "cooking": true,
-        "sports": true,
-        "painting": false
-      },
-      "id": 5
+      "phone" : "8564788456",
+      "dob" : "26-11-2002",
+      "gender" : "Male",
+      "hobbies": { 
+        "dancing": true, 
+        "cooking": true, 
+        "sports": false, 
+        "painting": true }
     }
   ],
+
   "admins": [
     {
       "id": 1,
@@ -78,4 +62,5 @@
       "password": "admin123"
     }
   ]
+
 }
