@@ -68,7 +68,7 @@ const EmployeeForm = (props) => {
                                     <p className={style.title}>Gender</p>
                                     <input type="radio" name="gender" onChange={props.handleChange} value="Male" />
                                     <label>Male</label> <br />
-                                    <input type="radio" name="gender" onChange={props.handleChange} value="Fe-male" />
+                                    <input type="radio" name="gender" onChange={props.handleChange} value="Female" />
                                     <label>Fe-male</label> <br />
                                     <input type="radio" name="gender" onChange={props.handleChange} value="Other" />
                                     <label>Other</label> <br />
