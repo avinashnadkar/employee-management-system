@@ -2,12 +2,13 @@
 * Start frontend
 1) clone this repository open the repository path in cmd or terminal
 2) install all dependencies run following command "npm i"
-3) run following command to start server "npm i"
+3) run following command to start server "npm start"
 
 * Start server
 1) after starting the app it is time to run server (json-server)
 2) open new terminal/cmd locate to server folder
-3) download all dependencies by running "npm i" command
+3) download dependencies by running "npm i" command
+4) To start the server run "json-server --watch employees.json"
 
 # Some screenshots of application
 
